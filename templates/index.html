@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<body>
+  <div class="container">
+    <form action="/datos" method="POST" class="row g-3 needs-validation" id="rowpadre" novalidate>
+      <div class="row g-3 needs-validation" id="seccion1">
+        <div class="form-group col-md-6" id="datosper1">
+          <label for="inputEmail4">Información personal</label>
+        </div>
+        <div class="form-group col-md-6" id="datosper">
+          <a>Todos los campos son necesarios</a>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="validationCustom01" name="fullname" required>
+          <div class="invalid-feedback">
+            Por favor escriba su nombre
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="validationCustom02" name="lastname" value="{{lastname}}" required>
+          <div class="invalid-feedback">
+            Por favor escriba su apellido
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Cedula</label>
+          <input type="text" class="form-control" id="validationCustom02" name="ident" value="{{ident}}" required>
+          <div class="invalid-feedback">
+            Por favor escriba su cedula
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="validationCustom02" name="birth" value="{{fecha}}" required>
+          <div class="invalid-feedback">
+            Por favor elija una fecha
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Estado civil</label>
+          <select class="form-select" id="validationCustom04" name="status" required>
+            <option selected disabled value="">Seleccione una opción</option>
+            <option value="Casado">Casado</option>
+            <option value="Soltero">Soltero</option>
+            <option value="Union Libre">Union libre</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor elija una opcion
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+      </div>
+
+      <div id="antecendentes" class="row g-3 needs-validation">
+        <div class="form-group col-md-6" id="datosper1">
+          <a>Antecedentes</a>
+        </div>
+        <div class="form-group col-md-6" id="datosper" id="datosper">
+          <a>Todos los campos son necesarios</a>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">¿Consume o ha consumido algún tipo de sustancia<br> psicoactiva?</label>
+          <select class="form-select" id="validationCustom04" name="drugs" required>
+            <option selected disabled value="">Seleccione una opción</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor elija una opcion
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">¿Padece o ha padecido algún transtorno psicologico o enfermedad psiquiatrica?</label>
+          <select class="form-select" id="validationCustom04" name="disorder" required>
+            <option selected disabled value="">Seleccione una opción</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor elija una opcion
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+      </div>
+
+      <div id="seccion2" class="row g-3 needs-validation">
+        <div class="form-group col-md-6" id="datosper1">
+          <a>Información laboral</a>
+        </div>
+        <div class="form-group col-md-6" id="datosper" id="datosper">
+          <a>Todos los campos son necesarios</a>
+        </div>
+        <div class="form-group col-md-6" >
+          <label for="validationCustom01" class="form-label">Empresa donde trabaja</label>
+          <input type="text" class="form-control" id="validationCustom01" name="company" value="{{company}}" required>
+          <div class="invalid-feedback">
+            Por favor escriba el nombre de la empresa
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Cargo que ocupa</label>
+          <input type="text" class="form-control" id="validationCustom01" name="position" value="{{position}}" required>
+          <div class="invalid-feedback">
+            Por favor escriba el cargo
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div id="seccion3">
+          <div class="col-12" id="seccion3_2" >
+            <button type="submit" class="btn btn-primary" name="button" value="continuar">Continuar</button>
+          </div>
+        </div>
+      </div>
+      </form>
+  </div>
+  <script type=text/javascript src="{{url_for('static', filename='js/jquery.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
+</body>
+{% endblock %}

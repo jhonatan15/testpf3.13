@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<body>
+  <div class="container">
+    <form action="/datos_2" method="POST" class="row g-3 needs-validation" id="rowpadre" novalidate>
+      <div class="row g-3 needs-validation" id="seccion1">
+        <div class="form-group col-md-6" id="datosper1">
+          <label for="inputEmail4">Información personal</label>
+        </div>
+        <div class="form-group col-md-6" id="datosper">
+          <a>Todos los campos son necesarios</a>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="validationCustom01" name="fullname_2" required>
+          <div class="invalid-feedback">
+            Por favor escriba su nombre
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Cedula</label>
+          <input type="text" class="form-control" id="validationCustom02" name="ident_2" required>
+          <div class="invalid-feedback">
+            Por favor escriba su cedula
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+          <div id="seccion3">
+            <div class="col-12" id="seccion3_2" >
+              <button type="submit" class="btn btn-primary" name="button" value="continuar2">Continuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </form>
+  </div>
+  <script type=text/javascript src="{{url_for('static', filename='js/jquery.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
+</body>
+{% endblock %}

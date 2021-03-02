@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body>
+  <div class="container">
+    <div class="row g-3" id="seccion4">
+      <div class="row g-3" id="seccion5">
+        <p id="consentimiento_1">
+                    <strong>PROPUESTA DE INVESTIGACIÓN:</strong> “Descripción de las características de
+          personalidad predominantes en personal de salud con sintomatología depresiva que
+          labora en el área metropolitana de Bucaramanga”.
+          La presente investigación tiene como objetivo ¨Describir las características de
+          personalidad predominantes en personal de la salud con sintomatología
+          depresiva que labora en el área metropolitana de Bucaramanga¨. Los criterios
+          para participar en este estudio son: ser mayor de edad, pertenecer a personal de salud
+          (médicos, residentes, especialistas, personal de enfermería, fisioterapeutas,
+          farmacéuticos, trabajadores sociales, instrumentadores quirúrgicos y paramédicos),
+          encontrarse alerta, ubicado temporal y espacialmente, presentar capacidad clara del
+          habla y de respuesta coherente.
+          El papel del participante consiste en responder al cuestionario ¨Inventario de Depresión
+          de Beck¨, compuesto de 21 preguntas de respuesta múltiple utilizado para medir
+          depresión, y posteriormente, de evidenciar sintomatología depresiva, se procederá a
+          realizar la aplicación del ¨Cuestionario de personalidad 16PF¨ compuesto por 185
+          preguntas con 3 opciones de respuesta utilizado para identificar características de
+          personalidad.
+          <strong>SOBRE USO Y CONFIDENCIALIDAD DE LOS DATOS</strong>
+          Los datos que se obtengan de su participación serán utilizados únicamente con fines de
+          formación y solamente por parte del equipo de Investigación de dicho Proyecto,
+          guardándose siempre sus datos personales en un lugar seguro, de tal manera que
+          ninguna persona ajena pueda acceder a esta información y atendiendo a un estricto
+          cumplimiento de la Ley Orgánica 15/1999 sobre la Protección de Datos de Carácter
+          Personal.
+          Antes de dar paso a este procedimiento, el participante, de estar de acuerdo y tener
+          claridad de la información presentada, deberá firmar el siguiente consentimiento
+          informado.
+          </p>
+          <div id="title1">
+            <h1>
+              <strong>Consentimiento informado</strong>
+            </h1>
+          </div>
+          <p id="consentimiento_1">
+          Yo {{fullname}} {{lastname}}, mayor de edad, identificado con cédula de ciudadanía número {{ident}}, deseo participar   en la investigación desarrollada actualmente en el marco de la Tesis de Grado a cargo de María Fernanda Chacón Larrotta, Tatiana Ximena Luna  Herrera, Anyel Paola Medrano Campos, Estudiantes de Psicología de la Universidad de Investigación y Desarrollo.
+          Testifico haber leído y estar de acuerdo con el procedimiento de la investigación y doy mi autorización para que los estudiantes de psicología utilicen los datos que voy a declarar por medio de la ¨El Inventario de Depresión de Beck¨ y ¨Cuestionario de personalidad 16PF¨. Las investigadoras de este proyecto se comprometen en el NO USO de sus datos personales y a mantener en el anonimato los resultados obtenidos.
+          Teniendo claro estos aspectos éticos y legales, firmo a los {{day}} días, del mes de {{month}} del {{year}}.
+          </p>
+
+      </div>
+      <form id="consentimiento_2" action="/consentimiento" method="POST">
+      <div id="seccion3">
+        <div class="col-12" id="seccion3_2" >
+          <button type="submit" class="btn btn-primary" name="button" value="accept">Aceptar consentimiento</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

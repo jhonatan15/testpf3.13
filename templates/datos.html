@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+<h1>16 PF-5. Cuestionario Factorial de Personalidad</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="/datos" method="POST">
+  <input type="text" name="fullname" placeholder="Ingrese su nombre">
+  <input type="text" name="lastname" placeholder="Ingrese su apellido">
+  <input type="text" name="ident" placeholder="Ingrese su numero de cedula">
+  <button type="submit" name="button">Continuar</button>
+</form>
