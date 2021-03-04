@@ -99,7 +99,7 @@ def consentimiento():
             return render_template('exam.html')
 
 #Guardar datos de la primer prueba en excel
-wb_first = load_workbook('primerexamen.xlsm', read_only=True)
+wb_first = load_workbook('primerexamen.xlsm')
 listB2_first = ""
 sheet_first = wb_first['Respuestas']
 multiple_cells_first = sheet_first['B3':'B23']
@@ -368,7 +368,7 @@ def exam_2():
 
 
 #Guardar archivo de excel con el id de la persona que relleno el formulario - Save excel file with the id of the person who filled out the form
-        wb.save('respuestas/encuesta2/encuesta2_'+ str(ident_2) +'.xlsx')
+        wb.save('respuestas/encuesta2/0'+ str(ident_2) +'.xlsx')
 #Cambiar de pagina html al presionar boton continuar en cada pagina
         list_pages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
         for i in list_pages:
