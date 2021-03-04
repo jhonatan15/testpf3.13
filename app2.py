@@ -5,13 +5,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 # Conexion con el servidor - server connection
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Songohan15'
-app.config['MYSQL_DB'] = 'informacionbasica'
-mysql = MySQL(app)
-
-app.secret_key = 'mysecretkey'
 
 # ruta index - Index route
 @app.route('/')
@@ -35,19 +28,19 @@ year = now.year
 month = now.month
 day = now.day
 
+#Excel para Registros
+
+wb_registro = load_workbook('registro.xlsx')
+sheet_registro = wb_registro['Registros']
+beginrow_registro = 2
+finalrow_registro = 1000
+listB_registro = [sheet_registro['A' + str(i)].value for i in range(beginrow_registro , finalrow_registro + 1)]
+
 # Formulario de inicio - Form
 @app.route('/datos', methods=['POST'])
 def datos():
     if request.method == 'POST':
-        global fullname
-        global lastname
-        global ident
-        global birth
-        global status
-        global company
-        global position
-        global drugs
-        global disorder
+        global fullname, lastname, ident, birth, status, company, position, drugs, disorder
 
 # Capturar informacion del formulario - Capture form information
         fullname = request.form['fullname']
@@ -60,13 +53,39 @@ def datos():
         position = request.form['position']
         drugs = request.form['drugs']
         disorder = request.form['disorder']
-        cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO contacts (nombre, apellido, cedula, nacimiento, estado_civil, empresa, cargo, sustancias, trastorno) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)', (fullname, lastname, ident, birth, status, company, position, drugs, disorder))
-        mysql.connection.commit()
 
 # confirmar si las variables estan llenas para continuar a la segunda pagina - confirm if the variables are full to continue to the second page
         if button == 'continuar':
-            if fullname != "" and lastname != "" and ident != "" and birth != "" and status != "" and company != "" and position != "":
+            if fullname != "" and lastname != "" and ident != "" and birth != "" and status != "" and company != "" and position != "" and drugs != "" and disorder != "":
+                number = 1
+
+                #Listas de cada fila / list of rows
+                row_name = sheet_registro['B']
+                for i in row_name:
+                    if i.value is not None:
+                        number += 1
+                    elif i.value is None:
+                        rowname = "B" + str(number)
+                        rowlastname = "C" + str(number)
+                        rowident = "D" + str(number)
+                        rowbirth = "E" + str(number)
+                        rowstatus = "F" + str(number)
+                        rowcompany = "G" + str(number)
+                        rowposition = "H" + str(number)
+                        rowdrugs = "I" + str(number)
+                        rowddisorder = "J" + str(number)
+
+                        sheet_registro[rowname] = fullname
+                        sheet_registro[rowlastname] = lastname
+                        sheet_registro[rowident] = ident
+                        sheet_registro[rowbirth] = birth
+                        sheet_registro[rowstatus] = status
+                        sheet_registro[rowcompany] = company
+                        sheet_registro[rowposition] = position
+                        sheet_registro[rowdrugs] = drugs
+                        sheet_registro[rowddisorder] = disorder
+                wb_registro.save('respuestas/registro/registro.xlsx')
+
                 return render_template('consentimiento.html', fullname = fullname, lastname = lastname, ident = ident, year = year, month = month, day = day)
 
 # Terminos y condiciones - Terms and conditions
@@ -361,4 +380,4 @@ def exam_2():
 
 
 if __name__ == '__main__':
-    app.run(port = 5000, debug = True)
+    app.run(host="127.0.0.1", port=5000, debug = True)
