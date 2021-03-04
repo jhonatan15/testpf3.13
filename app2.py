@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, send_file
-from flask_mysqldb import MySQL
 from openpyxl import load_workbook, Workbook
 from datetime import datetime
 
@@ -210,7 +209,6 @@ def datos_2():
         fullname_2 = request.form['fullname_2']
         ident_2 = request.form['ident_2']
         button_2 = request.form['button']
-        mysql.connection.commit()
 
 # confirmar si las variables estan llenas para continuar a la segunda pagina - confirm if the variables are full to continue to the second page
         if button_2 == 'continuar2':
