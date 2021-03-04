@@ -30,7 +30,7 @@ day = now.day
 
 #Excel para Registros
 
-wb_registro = load_workbook('registro.xlsx')
+wb_registro = load_workbook('respuestas/registro/registro.xlsx')
 sheet_registro = wb_registro['Registros']
 beginrow_registro = 2
 finalrow_registro = 1000
