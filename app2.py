@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, sen
 from openpyxl import load_workbook, Workbook
 from datetime import datetime
 import dropbox
+from dropbox.files import WriteMode
 
 app = Flask(__name__)
 # Conexion con el servidor - server connection
@@ -89,7 +90,7 @@ def datos():
                 file_to = '/registro1/registro.xlsx'
 
                 dbx = dropbox.Dropbox('lof7QmHw8AIAAAAAAAAAAcoR4IwiZ4_0Zxrhfh05EX3SbPON9JtNrIpZRg79rhwJ')
-                dbx.files_upload(open(file_from, 'rb').read(), file_to)
+                dbx.files_upload(open(file_from, 'rb').read(), file_to, mode=WriteMode('overwrite'))
 
                 return render_template('consentimiento.html', fullname = fullname, lastname = lastname, ident = ident, year = year, month = month, day = day)
 
