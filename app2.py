@@ -88,7 +88,7 @@ def datos():
                 file_from = 'respuestas/registro/registro.xlsx'
                 file_to = '/registro1/registro.xlsx'
 
-                dbx = dropbox.Dropbox('sl.AsdIoQIgAhf8uFWijZcodT4FhetKY0-ETzNFyqjXPq2M4y_RpHGv4LFAEYMiKyjuBRt1zvgRffF8Qy69zuMCCd04tMMCnz3uku5qdMd4lcQpTwez0EYRvWFtw5qZJYRXK6AG3KxS')
+                dbx = dropbox.Dropbox('sl.AseyWZ0zQvxgQoyvIBm4SZTq6BQC7Dg37LH5uyIVDiYwoiNpV0R6_qyceCM5d_Up1ObBS7455uZV3WqsX4AjYSrHk8mnwRbQa2dMVwtqBkTj3isUSxG9MmWSeWRkCS2pR5h9dHpd')
                 dbx.files_upload(open(file_from, 'rb').read(), file_to)
 
                 return render_template('consentimiento.html', fullname = fullname, lastname = lastname, ident = ident, year = year, month = month, day = day)
