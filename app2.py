@@ -98,8 +98,7 @@ def datos():
 @app.route('/consentimiento', methods=['POST'])
 def consentimiento():
     if request.method == 'POST':
-        global fullname
-        global lastname
+        global fullname, lastname
         button = request.form['button']
         if button == 'accept':
             return render_template('exam.html')
@@ -117,7 +116,7 @@ def exam():
     if request.method == 'POST':
 
 #Variables globales - Global variables
-        global wb_first, sheet_first, listB2_first
+        global wb_first, sheet_first, listB2_first, fullname, lastname
 
 #Obtener valores de un range de celdas en excel - Get values ​​from a range of cells in excel
         listB_first = [sheet_first['B' + str(i)].value for i in range(beginrow_first , finalrow_first + 1)]
@@ -181,6 +180,10 @@ def exam():
                         sheet_first[sheet2] = letter
 
         wb_first.save('respuestas/encuesta1/1_'+ str(ident) +'.xlsx')
+        file_from_2 = ('respuestas/encuesta1/1_'+ str(ident) +'.xlsx')
+        file_to_2 = ('/respuestas1/1_'+ str(ident) +'.xlsx')
+        dbx = dropbox.Dropbox('lof7QmHw8AIAAAAAAAAAAcoR4IwiZ4_0Zxrhfh05EX3SbPON9JtNrIpZRg79rhwJ')
+        dbx.files_upload(open(file_from_2, 'rb').read(), file_to_2, mode=WriteMode('overwrite'))
         if button2 == 21:
             return render_template('exam_21.html')
         elif button2 == 22:
@@ -219,9 +222,6 @@ def datos_2():
 
 # confirmar si las variables estan llenas para continuar a la segunda pagina - confirm if the variables are full to continue to the second page
         if button_2 == 'continuar2':
-            print(sheet_id)
-            sheet_id["B6"] = fullname_2
-            sheet_id["C6"] = ident_2
             if fullname_2 != "" and ident_2 != "":
                 return render_template('instrucciones.html')
 
@@ -240,7 +240,10 @@ def exam_2():
     if request.method == 'POST':
 
 #Variables globales - Global variables
-        global wb, sheet, listB, wb2
+        global wb, sheet, listB, wb2, fullname_2, ident_2
+
+        sheet_id['B6'] = fullname_2
+        sheet_id['C6'] = ident_2
 
 #Obtener valores de un range de celdas en excel - Get values ​​from a range of cells in excel
         listB = [sheet['B' + str(i)].value for i in range(beginrow , finalrow + 1)]
@@ -373,7 +376,11 @@ def exam_2():
 
 
 #Guardar archivo de excel con el id de la persona que relleno el formulario - Save excel file with the id of the person who filled out the form
-        wb.save('respuestas/encuesta2/0'+ str(ident_2) +'.xlsx')
+        wb.save('respuestas/encuesta2/0_'+ str(ident_2) +'.xlsx')
+        file_from_3 = ('respuestas/encuesta2/0_'+ str(ident_2) +'.xlsx')
+        file_to_3 = ('/respuestas2/0_'+ str(ident_2) +'.xlsx')
+        dbx = dropbox.Dropbox('lof7QmHw8AIAAAAAAAAAAcoR4IwiZ4_0Zxrhfh05EX3SbPON9JtNrIpZRg79rhwJ')
+        dbx.files_upload(open(file_from_3, 'rb').read(), file_to_3, mode=WriteMode('overwrite'))
 #Cambiar de pagina html al presionar boton continuar en cada pagina
         list_pages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
         for i in list_pages:
