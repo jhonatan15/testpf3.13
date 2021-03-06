@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, send_file
 from openpyxl import load_workbook, Workbook
 from datetime import datetime
+import dropbox
 
 app = Flask(__name__)
 # Conexion con el servidor - server connection
@@ -10,6 +11,7 @@ app = Flask(__name__)
 def Index():
     return render_template('index.html', fullname = fullname, lastname = lastname, ident = ident, birth = birth, status = status, company = company, position = position, drugs = drugs, disorder = disorder)
 
+#dropbox
 
 # Variables globales - Global variables
 fullname = ""
@@ -21,7 +23,6 @@ company = ""
 position = ""
 drugs = ""
 disorder = ""
-clase = "btn btn-outline-primary"
 now = datetime.now()
 year = now.year
 month = now.month
@@ -84,6 +85,11 @@ def datos():
                         sheet_registro[rowdrugs] = drugs
                         sheet_registro[rowddisorder] = disorder
                 wb_registro.save('respuestas/registro/registro.xlsx')
+                file_from = 'respuestas/registro/registro.xlsx'
+                file_to = '/registro1/registro.xlsx'
+
+                dbx = dropbox.Dropbox('sl.AsdIoQIgAhf8uFWijZcodT4FhetKY0-ETzNFyqjXPq2M4y_RpHGv4LFAEYMiKyjuBRt1zvgRffF8Qy69zuMCCd04tMMCnz3uku5qdMd4lcQpTwez0EYRvWFtw5qZJYRXK6AG3KxS')
+                dbx.files_upload(open(file_from, 'rb').read(), file_to)
 
                 return render_template('consentimiento.html', fullname = fullname, lastname = lastname, ident = ident, year = year, month = month, day = day)
 
