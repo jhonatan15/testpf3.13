@@ -53,6 +53,7 @@
   padding-top: calc(var(--bs-gutter-x) / 2);
   padding-bottom: calc(var(--bs-gutter-x) / 2);
   margin-top: var(--bs-gutter-y);
+  margin-bottom: var(--bs-gutter-y);
 }
 
 .col {
