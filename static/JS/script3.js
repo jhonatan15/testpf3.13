@@ -10,7 +10,7 @@ function verificar(){
       suma++;
       }
   }
-  if(suma < 6){
+  if(suma < 7){
     alert('debe responder todas las preguntas');
     return false;
   } else {

@@ -77,7 +77,7 @@
           <a>Todos los campos son necesarios</a>
         </div>
         <div class="col-md-4">
-          <label for="validationCustom02" class="form-label">¿Consume o ha consumido algún tipo de sustancia<br> psicoactiva?</label>
+          <label for="validationCustom02" class="form-label">¿Consume o ha consumido<br> algún tipo de sustancia<br> psicoactiva?</label>
           <select class="form-select" id="validationCustom04" name="drugs" required>
             <option selected disabled value="">Seleccione una opción</option>
             <option value="Si">Si</option>
@@ -93,6 +93,20 @@
         <div class="col-md-4">
           <label for="validationCustom02" class="form-label">¿Padece o ha padecido algún transtorno psicologico o enfermedad psiquiatrica?</label>
           <select class="form-select" id="validationCustom04" name="disorder" required>
+            <option selected disabled value="">Seleccione una opción</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor elija una opcion
+          </div>
+          <div class="valid-feedback">
+            Genial!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">¿Padece de alguna<br> enfermedad crónica<br> o terminal?</label>
+          <select class="form-select" id="validationCustom04" name="disease" required>
             <option selected disabled value="">Seleccione una opción</option>
             <option value="Si">Si</option>
             <option value="No">No</option>

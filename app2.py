@@ -6,15 +6,6 @@ from dropbox.files import WriteMode
 
 app = Flask(__name__)
 # Conexion con el servidor - server connection
-
-# ruta index - Index route
-@app.route('/')
-def Index():
-    return render_template('index.html', fullname = fullname, lastname = lastname, ident = ident, birth = birth, status = status, company = company, position = position, drugs = drugs, disorder = disorder)
-
-#dropbox
-
-# Variables globales - Global variables
 fullname = ""
 lastname = ""
 ident = ""
@@ -24,6 +15,15 @@ company = ""
 position = ""
 drugs = ""
 disorder = ""
+disease = ""
+# ruta index - Index route
+@app.route('/')
+def Index():
+    return render_template('index.html', fullname = fullname, lastname = lastname, ident = ident, birth = birth, status = status, company = company, position = position, drugs = drugs, disorder = disorder)
+
+#dropbox
+
+# Variables globales - Global variables
 now = datetime.now()
 year = now.year
 month = now.month
@@ -41,7 +41,7 @@ listB_registro = [sheet_registro['A' + str(i)].value for i in range(beginrow_reg
 @app.route('/datos', methods=['POST'])
 def datos():
     if request.method == 'POST':
-        global fullname, lastname, ident, birth, status, company, position, drugs, disorder
+        global fullname, lastname, ident, birth, status, company, position, drugs, disorder, disease
 
 # Capturar informacion del formulario - Capture form information
         fullname = request.form['fullname']
@@ -54,10 +54,11 @@ def datos():
         position = request.form['position']
         drugs = request.form['drugs']
         disorder = request.form['disorder']
+        disease = request.form['disease']
 
 # confirmar si las variables estan llenas para continuar a la segunda pagina - confirm if the variables are full to continue to the second page
         if button == 'continuar':
-            if fullname != "" and lastname != "" and ident != "" and birth != "" and status != "" and company != "" and position != "" and drugs != "" and disorder != "":
+            if fullname != "" and lastname != "" and ident != "" and birth != "" and status != "" and company != "" and position != "" and drugs != "" and disorder != "" and disease != "":
                 number = 1
 
                 #Listas de cada fila / list of rows
@@ -74,7 +75,8 @@ def datos():
                         rowcompany = "G" + str(number)
                         rowposition = "H" + str(number)
                         rowdrugs = "I" + str(number)
-                        rowddisorder = "J" + str(number)
+                        rowdisorder = "J" + str(number)
+                        rowdisease = "K" + str(number)
 
                         sheet_registro[rowname] = fullname
                         sheet_registro[rowlastname] = lastname
@@ -84,7 +86,8 @@ def datos():
                         sheet_registro[rowcompany] = company
                         sheet_registro[rowposition] = position
                         sheet_registro[rowdrugs] = drugs
-                        sheet_registro[rowddisorder] = disorder
+                        sheet_registro[rowdisorder] = disorder
+                        sheet_registro[rowdisease] = disease
                 wb_registro.save('respuestas/registro/registro.xlsx')
                 file_from = 'respuestas/registro/registro.xlsx'
                 file_to = '/registro1/registro.xlsx'
@@ -345,19 +348,6 @@ def exam_2():
                             sheet2 = "C" + number
                             sheet[sheet2] = letter
 
-            elif button == 22:
-                list_quest3 = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11]
-                for i in list_quest2:
-                    number = i[0:3]
-                    letter = i[4]
-                    print(number)
-                    print(letter)
-                    for i in listB:
-                        ist2 = str(i)
-                        if ist2 == number:
-                            sheet2 = "C" + number
-                            sheet[sheet2] = letter
-
             else:
                 list_quest2 = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10]
                 for i in list_quest2:
@@ -382,7 +372,7 @@ def exam_2():
         dbx = dropbox.Dropbox('lof7QmHw8AIAAAAAAAAAAcoR4IwiZ4_0Zxrhfh05EX3SbPON9JtNrIpZRg79rhwJ')
         dbx.files_upload(open(file_from_3, 'rb').read(), file_to_3, mode=WriteMode('overwrite'))
 #Cambiar de pagina html al presionar boton continuar en cada pagina
-        list_pages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        list_pages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
         for i in list_pages:
             if i == button2:
                 return render_template('exam_' + button + '.html')
