@@ -5,7 +5,7 @@ import dropbox
 from dropbox.files import WriteMode
 
 app = Flask(__name__)
-# Conexion con el servidor - server connection
+
 fullname = ""
 lastname = ""
 ident = ""
